@@ -3,14 +3,10 @@ import styles from './CityList.module.css';
 import Spinner from './Spinner';
 import { City } from '../../types/types';
 import Message from './Message';
+import { useCities } from '../contexts/CitiesContext';
 
-export default function CityList({
-  cities,
-  isLoading,
-}: {
-  cities: Record<string, never> | City[];
-  isLoading: boolean;
-}) {
+export default function CityList() {
+  const { cities, isLoading } = useCities();
   if (isLoading) return <Spinner />;
   if (!cities.length)
     return <Message message="Add your first city by clicking on the map." />;
